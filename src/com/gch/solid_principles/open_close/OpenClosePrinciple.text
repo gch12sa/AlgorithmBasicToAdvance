@@ -5,5 +5,61 @@ application.
 
 Of course, the one exception to the rule is when fixing bugs in existing code.
 
+public class InvoiceDAO {
+    private Invoice invoice;
 
+    public InvoiceDAO(Invoice invoice) {
+        this.invoice = invoice;
+    }
 
+    public void saveInvoiceInDB(){
+        //  Save invoice into DB
+    }
+}
+
+Lets take an example: in previous version of the application we have only one persistence system in
+which i need to save  an invoice, but we have extend this behaviour means we have save it in file also then:
+
+public class InvoiceDAO {
+    private Invoice invoice;
+
+    public InvoiceDAO(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public void saveInvoiceInDB(){
+        //  Save invoice into DB
+    }
+
+    public void saveInvoiceInFile(String fileName){
+        //  Save invoice into DB
+    }
+
+}
+
+now InvoiceDAO class is compatible with Open/close principle, of course not because we modified
+existing functionality which already running. which may cause new potential bugs.
+
+So apply Open/Close principle in InvoiceDAO class, i break the class in such a way:
+
+public interface InvoiceDAO {
+    void save(Invoice invoice);
+}
+
+public class DBInvoice implements InvoiceDAO{
+
+    @Override
+    public void save(Invoice invoice) {
+        // TODO to save invoice in DB
+    }
+}
+
+public class FileInvoice implements InvoiceDAO{
+
+    @Override
+    public void save(Invoice invoice) {
+       // TODO to save invoice in File
+    }
+}
+
+Hence now InvoiceDAO class is compatible with Open/Close principle.
