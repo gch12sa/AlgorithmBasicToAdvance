@@ -1,0 +1,94 @@
+Single Responsibility Principle: this principle states that a class should only have one responsibility. Furthermore,
+ it should only have one reason to change.
+
+Marker Entity:
+
+public class Marker {
+    private String name;
+    private String color;
+    private LocalDate manufacturedDate;
+    private int price;
+
+    public Marker(String name, String color, LocalDate manufacturedDate, int price) {
+        this.name = name;
+        this.color = color;
+        this.manufacturedDate = manufacturedDate;
+        this.price = price;
+    }
+}
+
+
+public class Invoice {
+    private final Marker marker;
+    private final int quantity;
+
+    public Invoice(Marker marker, int quantity) {
+        this.marker = marker;
+        this.quantity = quantity;
+    }
+
+    public int calculateTotal(){
+        return marker.getPrice() * quantity;
+    }
+
+    public void printInvoice(){
+        //  Print invoice
+    }
+
+    public void saveInvoice(){
+        //  Save invoice into DB
+    }
+}
+
+Hence Invoice class have multiple reasons to change like:
+1. calculateTotal
+2. printInvoice
+3. saveInvoice
+
+
+Hence to convert Invoice class into class which is apply SRP as
+
+public class Invoice {
+    private final Marker marker;
+    private final int quantity;
+
+    public Invoice(Marker marker, int quantity) {
+        this.marker = marker;
+        this.quantity = quantity;
+    }
+
+    public int calculateTotal(){
+        return marker.getPrice() * quantity;
+    }
+ }
+
+public class InvoiceDAO {
+    private Invoice invoice;
+
+    public InvoiceDAO(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public void saveInvoice(){
+        //  Save invoice into DB
+    }
+
+}
+
+public class InvoicePrinter {
+    private Invoice invoice;
+
+    public InvoicePrinter(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public void printInvoice(){
+        //  Print invoice
+    }
+}
+
+
+
+
+
+
