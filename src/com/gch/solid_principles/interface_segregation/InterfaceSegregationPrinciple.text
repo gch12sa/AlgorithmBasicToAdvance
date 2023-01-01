@@ -1,0 +1,53 @@
+Interface Segregation Principle:
+                It states that larger interfaces should be split into smaller ones. By doing so,
+we can ensure that implementing classes should not implement unnecessary methods they do not need.
+
+Lets take an example we have an interface name RestaurantEmployee which have three methods in it.
+
+
+public interface RestaurantEmployee {
+    void washDishes();
+    void serveCustomers();
+    void cookFood();
+}
+
+public class Waiter implements RestaurantEmployee{
+
+    @Override
+    public void washDishes() {
+        System.out.println("This is not my Job.");
+    }
+
+    @Override
+    public void serveCustomers() {
+        System.out.println("Serving the customer");
+    }
+
+    @Override
+    public void cookFood() {
+        System.out.println("This is not my Job.");
+
+    }
+}
+
+An here waiter is the implementation class of RestaurantEmployee,
+and waiter's job is to serve food to customer not wash dishes and cook food,
+hence waiting is not not responsible to to implement those methods. so fix
+it we segregate the larger interface into small one.
+
+public interface WaiterJob {
+    void takeOrder();
+    void serveFood();
+}
+
+public interface ChefJob {
+    void cookFood();
+    void decideMenu();
+}
+
+now if we are implementation for Waiter, he should implement waiterJob interface,
+hence he is responsible to implement respective methods.
+
+
+
+
