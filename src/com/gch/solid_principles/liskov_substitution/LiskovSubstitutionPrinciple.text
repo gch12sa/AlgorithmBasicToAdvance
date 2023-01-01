@@ -1,0 +1,48 @@
+Liskov substitution principle:
+            It states that “subclasses should be substitutable for their base classes“.
+means  if class B is a subtype of class A, we should be able to replace A with B without disrupting
+the behavior of our program.
+
+Subclass should extend the capability of the parent class not narrow it down.
+
+Lets take an example;
+
+public interface Bike {
+    void turnOnEngine();
+    void accelerate();
+}
+
+public class Motorcycle implements Bike{
+    private boolean isEngineOn;
+    private int speed;
+
+    @Override
+    public void turnOnEngine() {
+        isEngineOn = true;
+    }
+
+    @Override
+    public void accelerate() {
+        speed = speed + 10;
+
+    }
+}
+
+public class Bicycle implements Bike{
+    private int speed;
+
+    @Override
+    public void turnOnEngine() {
+        throw new RuntimeException("Cycle doesn't have any engine");
+    }
+
+    @Override
+    public void accelerate() {
+        speed = speed + 10;
+    }
+}
+
+if our code expecting Bike object and we pass cycle object and call method turnOnEngine()
+getting an exception, means we decrease the capability of the Bike class, hence code not respect the
+Liskov substitution principle.
+
