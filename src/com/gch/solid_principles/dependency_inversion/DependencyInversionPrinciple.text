@@ -1,0 +1,46 @@
+Interface Segregation Principle:
+                The principle of dependency inversion refers to the decoupling of software modules.
+This way, instead of high-level modules depending on low-level modules, both will depend on abstractions.
+
+Lets take an example, we have have a mac book, which have depends on a keyboard and a mouse.
+
+public class MacBook {
+    private final WiredKeyboard wiredKeyboard;
+    private  final WiredMouse wiredMouse;
+
+    public MacBook(WiredKeyboard wiredKeyboard, WiredMouse wiredMouse) {
+        this.wiredKeyboard = wiredKeyboard;
+        this.wiredMouse = wiredMouse;
+    }
+}
+
+Here we show MacBook is highly depends upon wired keyboard and wired mouse,
+in future if we have have Bluetooth keyword and mouse then above implementation gets failed. to make MacBook
+as loosely coupled as MacBook depends on Abstraction as:
+
+public interface KeyBoard {
+
+}
+
+public class WiredKeyboard implements Keyboard{
+
+}
+
+public class BluetoothKeyboard implements Keyboard{
+
+}
+
+public class MacBook {
+    private final Keyboard keyboard;
+    private  final Mouse mouse;
+
+    public MacBook(Keyboard keyboard, Mouse mouse) {
+        this.keyboard = keyboard;
+        this.mouse = mouse;
+    }
+}
+
+now MacBook class loosely coupled with Keyboard  and Mouse, which is flexible to accepts either wired or bluetooth
+Keyboard or mouse.
+
+
