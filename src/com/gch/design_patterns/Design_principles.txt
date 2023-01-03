@@ -1,0 +1,13 @@
+Design principles:
+          In software engineering, a Design Pattern describes an established solution to the most commonly
+encountered problems in software design. It represents the best practices evolved over a long period
+through trial and error by experienced software developers.
+
+Design Patterns gained popularity after the book Design Patterns: Elements of Reusable Object-Oriented
+Software was published in 1994 by Erich Gamma, John Vlissides, Ralph Johnson, and Richard Helm
+(also known as Gang of Four or GoF).
+
+Basically there are three types of design patterns:
+1. Creational Design Patterns
+2. Structural Design Patterns
+3. Behavioural Design Patterns
